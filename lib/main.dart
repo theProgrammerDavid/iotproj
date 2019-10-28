@@ -64,10 +64,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  var timer;
 
   void startTimer() {
-    var timer = Timer(Duration(seconds: 1), () => test());
+    timer = new Timer.periodic(const Duration(seconds: 1),(Timer t)=>test());
   }
 
   Future<Position> locateUser() async {
@@ -102,9 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
     print(pos.longitude);
     latStr = pos.toString();
     print('str is:' + latStr);
-    
-    makePostRequest();
 
+    makePostRequest();
   }
 
   void handleTimeout() {
@@ -112,14 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
     makePostRequest();
   }
 
-
-
   void _incrementCounter() {
     startTimer();
-   // makePostRequest();
-     // test();
+    // makePostRequest();
+    // test();
     setState(() {
-
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
